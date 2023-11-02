@@ -4,11 +4,6 @@ import sys
 for line in sys.stdin:
     cost_i = Counter(line)['D']
     pos = [0, 0]
-    a_pos = {
-        'D': 0,
-        'L': 0,
-        'R': 0
-    }
     direction_m = {
         'N': (1, 0),
         'S': (-1, 0),
