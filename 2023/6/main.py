@@ -1,8 +1,26 @@
 import numpy as np
 import sys
-import time as tm
+import random
+import time
 
-start_time = tm.time()
+
+"""
+def random_lines():
+    v, t, w = random.randint(1, 1000000), random.randint(1, 10000), random.randint(1, 200000)
+    x1, x2, x3 = random.randint(-10000, w - 1), random.randint(-10000, w - 1), random.randint(-10000, w - 1)
+    y1, y2, y3 = random.randint(-10000, w - 1), random.randint(-10000, w - 1), random.randint(-10000, w - 1)
+    s1 = f'{x1} {y1} {x2} {y2} {x3} {y3}'
+    s2 = f'{v} {t} {w}'
+    return [s1, s2]
+
+
+max_time = time.time()
+iterations = 1000
+for _ in range(iterations):
+    random_vals = random_lines()
+for line in random_vals:
+"""
+start_time = time.time()
 """
 for line in ['5 3 -3 3 -3 -5', '15 4 20']:  # 1.in
 for line in ['10 0 0 5 -7 -7', '30 1 50']:  # 3.in
@@ -57,7 +75,7 @@ for line in sys.stdin:
         delta_degrees_time = 360 / t  # this is the amount of degrees it goes for every t
         current_time = 0
         last_sign = -1
-        accuracy = 10  # Cannot be > 14
+        accuracy = 10  # Must be < 15
         for exponent in range(accuracy + 1):
             delta_time = 0.01 * (10 ** (-exponent)) * last_sign
             last_sign *= -1
@@ -73,4 +91,5 @@ for line in sys.stdin:
         raw_time = current_time + fastest_time_to_earth_distance
         total_time = format(round(raw_time, accuracy), "." + str(accuracy) + "f")
         print(total_time)
-        # print(f'Took {tm.time() - start_time} seconds')
+        # print(f'Took {time.time() - start_time} seconds')
+# print(f'Took {time.time() - max_time} seconds to run {iterations} iterations')

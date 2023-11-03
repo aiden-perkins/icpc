@@ -1,2 +1,5 @@
-.idea
+__pycache__
 *.out
+.idea/*
+!.idea/runConfigurations/
+!.idea/discord.xml
