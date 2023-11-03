@@ -1,43 +1,46 @@
-import copy
+from fractions import Fraction
 import sys
-import math
 
+parcel_count = 0
 bookings = {}
 for i in range(1, 37):
     bookings[i] = []
-m = {
-    'N': [0, 0.5, 0, 0],
-    'S': [0, 0, 0, 0.5],
-    'W': [0, 0, 0.5, 0],
-    'E': [0.5, 0, 0, 0],
-}
-mmm = {
-    1: 3,
-    2: 0,
-    3: 1,
-    0: 2
-}
 for line in sys.stdin:
-    info = line.split(' SECTION ')
+    info = line.replace('  ', ' ').split(' SECTION ')
     s_n = int(info[1])
-    parts = info[0].split(' of ')
-    s = [0, 0, math.sqrt(640), math.sqrt(640)]
+    parts = info[0].split(' OF ')
+    const = 640 / 256
+    s = [0, 0, 16, 16]
     parts.reverse()
     for part in parts:
-        s_old = copy.deepcopy(s)
-        if '1/2' in part:
-            for j, crd in enumerate(s):
-                s[j] += (s_old[mmm[j]] / 2)
-        if '1/4' in part:
-            for j, crd in enumerate(s):
-                s[j] += (s_old[mmm[j]] / 2)
-    if s not in bookings[s_n]:
-        t = 1
-        t *= s[2] - s[0]
-        t *= s[3] - s[1]
-        print(f'{s_n} {t // 1} ACRES')
-        bookings[s_n].append(s)
+        delta_x = (s[2] - s[0]) // 2
+        delta_y = (s[3] - s[1]) // 2
+        if 'N' in part:
+            s[1] += delta_y
+        elif 'S' in part:
+            s[3] -= delta_y
+        if 'E' in part:
+            s[0] += delta_x
+        elif 'W' in part:
+            s[2] -= delta_x
+    for book in bookings[s_n]:
+        s_x_r = range(s[0], s[2] + 1)
+        book_x_r = range(book[0], book[2] + 1)
+        s_y_r = range(s[1], s[3] + 1)
+        book_y_r = range(book[1], book[3] + 1)
+        if len(list(set(s_x_r) & set(book_x_r))) > 1 and len(list(set(s_y_r) & set(book_y_r))) > 1:
+            print(f'OVERLAPS {book[4]}')
+            break
     else:
-        print('OVERLAPS')
+        acres = (s[2] - s[0]) * (s[3] - s[1]) * const
+        fraction_s = ''
+        if acres / int(acres) != 1:
+            fraction_s = ' ' + str(Fraction(acres % int(acres)))
+        word = 'ACRES'
+        if acres <= 1:
+            word = 'ACRE'
+        parcel_count += 1
+        print(f'{parcel_count} {int(acres)}{fraction_s} {word}')
+        s.append(parcel_count)
+        bookings[s_n].append(s)
 
-# NE1/4 SECTION 1
