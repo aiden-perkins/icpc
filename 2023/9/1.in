@@ -1,0 +1,23 @@
+11
+9
+2,Lionel Smith
+3,Lucy Davenport
+5,Cristiano Ramirez
+6,Javi Ruiz
+7,Sam Meade
+8,Pernille Abramovich
+9,Neymar Jones
+10,Wendie Goetter
+12,Vincent van Vliet
+13,Ada Lovelace
+14,Chloe Pele
+2 1 14
+4 1 13
+5 1 9
+1 1 2
+2 1 7
+3 2 13 14
+-1 1 5
+-10 1 3
+-3 2 9 13
+7 3 2 6 10
