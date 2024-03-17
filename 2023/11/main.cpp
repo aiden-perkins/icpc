@@ -21,7 +21,7 @@ long int binomial_coefficient(int top, int bottom, long int** cache) {
 
 int main() {
     cout << fixed;
-    cout << setprecision(15);
+    cout << setprecision(10);
     string inputLine;
     getline(cin, inputLine);
     int playerCount = stoi(inputLine);
