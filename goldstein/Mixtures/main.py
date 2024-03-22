@@ -24,7 +24,7 @@ for y in range(ratio_count - 1):
 # Each leading coefficient is in a column to the right of the one above it
 # Rows with more leading zeroes go after the ones with less
 for i in range(equation_count):
-    matrix[i:] = sorted(matrix[i:])
+    # matrix[i:] = sorted(matrix[i:])  # I don't think I need this but I will leave it here just in case.
     leading_coefficient = 0
     for m, v in enumerate(matrix[i]):
         if v != 0:
