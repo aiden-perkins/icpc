@@ -5,11 +5,18 @@ k2 = int(input())
 adj_matrix = []
 for line in sys.stdin:
     adj_matrix.append([int(a) for a in line[:-1]])
-print(len(adj_matrix))
-to_remove = []
-for i, p in enumerate(adj_matrix):
-    if p.count(0) - 1 < k2 or p.count(1) < k1:
-        to_remove.append(i)
-for i in to_remove:
-    del adj_matrix[i]
-[print(a) for a in adj_matrix]
+for i in range(len(adj_matrix)):
+    adj_matrix[i][i] = -1
+people = list(range(len(adj_matrix)))
+while True:
+    for i, person in enumerate(adj_matrix):
+        if (person.count(0) < k2 or person.count(1) < k1) and i in people:
+            adj_matrix[i] = [-1 for _ in person]
+            people.remove(i)
+            for j in range(len(adj_matrix)):
+                adj_matrix[j][i] = -1
+            break
+    else:
+        break
+for left in people:
+    print(left + 1)
