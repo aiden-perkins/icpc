@@ -24,7 +24,7 @@ for y in range(ratio_count - 1):
 # Each leading coefficient is in a column to the right of the one above it
 # Rows with more leading zeroes go after the ones with less
 for i in range(equation_count):
-    # matrix[i:] = sorted(matrix[i:])  # I don't think I need this but I will leave it here just in case.
+    # matrix[i:] = sorted(matrix[i:])  # I don't think I need this, but I will leave it here just in case.
     leading_coefficient = 0
     for m, v in enumerate(matrix[i]):
         if v != 0:
@@ -35,9 +35,9 @@ for i in range(equation_count):
         for j in range(leading_coefficient, ratio_count):
             matrix[i][j] *= reciprocal
     for k in range(i + 1, equation_count):
-        multiplicant = matrix[k][leading_coefficient]
+        multiplicand = matrix[k][leading_coefficient]
         for j in range(leading_coefficient, ratio_count):
-            matrix[k][j] = matrix[k][j] - (matrix[i][j] * multiplicant)
+            matrix[k][j] -= matrix[i][j] * multiplicand
 
 # After we have it in echelon form we want to turn it into the reduced row echelon form:
 # The leading coefficient in each row is the only non-zero item
@@ -48,9 +48,9 @@ for i in range(equation_count - 1):
             start = m + 1
             break
     for j in range(start, ratio_count - 1):
-        multiplicant = matrix[i][j]
+        multiplicand = matrix[i][j]
         for k in range(j, ratio_count):
-            matrix[i][k] = matrix[i][k] - (multiplicant * matrix[j][k])
+            matrix[i][k] -= multiplicand * matrix[j][k]
 
 # Once we have it in reduced row echelon form, the rightmost element in each row is the answer.
 answers = [a[-1] for a in matrix]
