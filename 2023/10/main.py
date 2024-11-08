@@ -9,8 +9,9 @@ for line in sys.stdin:
     info = line.replace('  ', ' ').split(' SECTION ')
     s_n = int(info[1])
     parts = info[0].split(' OF ')
-    const = 640 / 256
-    s = [0, 0, 16, 16]
+    nests = 1024
+    const = 640 / (nests ** 2)
+    s = [0, 0, nests, nests]
     parts.reverse()
     for part in parts:
         delta_x = (s[2] - s[0]) // 2
