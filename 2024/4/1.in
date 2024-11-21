@@ -1,0 +1,16 @@
+K F = 1.800 C + 32.000
+K K = 1.000 C + 273.150
+H 0.000 C = ? F
+H 36.600 F = ? K
+K kB = 0.100 kB_by_10
+K B = 102.400 kB_by_10
+H 1.000 kB = ? b
+K b = 8.000 B
+H 1.000 kB = ? b
+K kilogram = 1000.000 ton
+H 1.000 kilogram = ? ton
+H 1.000 kg = ? ton
+H 1.000 F = ? ton
+K 2kg = 2.000 _one_kilogram + 0.000
+K pounds_per_inch2 = 14.504 bar
+G
