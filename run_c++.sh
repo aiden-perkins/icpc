@@ -1,5 +1,3 @@
-#!/bin/bash
-
 g++ "$1"/"$2"/main.cpp -o "$1"/"$2"/main.out
 if [ "$#" == 2 ]; then
     test_count=$(find "$1"/"$2"/ -type f -name "*.in" | wc -l)

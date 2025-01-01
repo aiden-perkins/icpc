@@ -1,5 +1,3 @@
-#!/bin/bash
-
 if [ "$#" == 2 ]; then
     test_count=$(find "$1"/"$2"/ -type f -name "*.in" | wc -l)
     for i in $(seq $test_count); do

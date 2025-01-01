@@ -11,4 +11,3 @@ for i in range(10 ** 6):
 f = open('6.in', 'w')
 f.write(s + '\n')
 f.close()
-
